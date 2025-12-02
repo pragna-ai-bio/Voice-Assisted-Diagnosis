@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PragnaAI - Early Cancer Diagnosis Vision</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header (partial - for navigation) -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">PragnaAI</div>
+            <div class="nav-links">
+                <a href="#" class="nav-link" data-page="demo">Demo</a>
+            </div>
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        <div class="mobile-nav-links" id="mobile-nav-links">
+            <a href="#" class="mobile-nav-link" data-page="demo">Demo</a>
+        </div>
+    </header>
+    
+    <!-- Demo Page -->
+    <div id="demo-page" class="page">
+        <div class="content-wrapper">
+            <div class="demo-sections">
+                <!-- Voice Diagnosis Section -->
+                <section class="voice-diagnosis-section">
+                    <h2 class="section-title">Voice Assisted Parkinson's Disease Diagnosis</h2>
+                    <p class="demo-description">Experience our innovative voice analysis technology for Parkinson's disease research. This demo leverages models trained on the UCI "Parkinson Speech Dataset with Multiple Types of Sound Recordings" to analyze speech signals and detect subtle vocal biomarkers associated with neurological conditions.</p>
+                    <p class="demo-description">Our voice analysis focuses on detecting micro-tremors, frequency variations, and speech pattern changes that may indicate early-stage Parkinson's disease, often before visible motor symptoms appear. The system analyzes multiple acoustic parameters including:</p>
+                    <ul style="margin-left: 20px; margin-bottom: 20px; color: var(--text-muted);">
+                        <li>Fundamental frequency variations</li>
+                        <li>Amplitude variations</li>
+                        <li>Harmonic-to-noise ratio</li>
+                        <li>Vocal tremor patterns</li>
+                        <li>Speech rate and rhythm</li>
+                    </ul>
+                    <a href="#" class="demo-btn" id="voice-demo-btn">
+                        Launch Voice Diagnosis <i class="fas fa-microphone"></i>
+                    </a>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <!-- Voice Diagnosis Page -->
+    <div id="voice-page" class="page">
+        <!-- Voice Hero Section -->
+        <section class="voice-page-hero">
+            <div class="hero-content">
+                <div class="tagline-container">
+                    <h1 class="voice-tagline">
+                        "Voice Analysis for <span class="voice-tagline-emphasis">Parkinson's</span> Disease Research"
+                    </h1>
+                </div>
+            </div>
+        </section>
+        
+        <div class="content-wrapper">
+            <!-- IMPORTANT NOTICE -->
+            <div class="important-notice">
+                <strong>IMPORTANT:</strong> This voice analysis works only under ideal conditions. Please record in silent environment with your mic close (10-20cm) to your mouth. Crowd noise, talking, echoes, or music can cause incorrect results.
+            </div>
+            
+            <section class="voice-diagnosis-section">
+                <div class="voice-diagnosis-content">
+                    <div class="voice-controls">
+                        <button id="record-btn" class="voice-btn">
+                            <i class="fas fa-microphone"></i> Start Recording
+                        </button>
+                        <button id="stop-btn" class="voice-btn" disabled>
+                            <i class="fas fa-stop"></i> Stop Recording
+                        </button>
+                        <button id="play-btn" class="voice-btn" disabled>
+                            <i class="fas fa-play"></i> Play Recording
+                        </button>
+                    </div>
+                    
+                    <div id="recording-indicator" class="recording-indicator">
+                        <div class="recording-dot"></div>
+                        <span>Recording in progress...</span>
+                    </div>
+                    
+                    <audio id="audio-player" class="audio-player" controls style="display: none;"></audio>
+                    <p id="status" style="margin-top:12px; color: var(--text-muted);"></p>
+                    <div id="spinner" style="display:none; margin-top:8px; width:24px; height:24px; border:4px solid #3a506b; border-top:4px solid var(--primary-yellow); border-radius:50%; animation: spin 1s linear infinite;"></div>
+                    
+                    <div class="analysis-result" id="analysis-result" style="display: none;">
+                        <h3 class="result-title">Voice Analysis Result</h3>
+                        <div class="result-value">0%</div>
+                        <p class="result-note">
+                            Based on our preliminary analysis of your voice recording, we have detected no significant vocal biomarkers associated with Parkinson's disease.
+                        </p>
+                    </div>
+
+                    <div class="graph-title">Waveform Voice Graph</div>
+                    <div class="graph-container">
+                        <canvas id="graph-canvas" class="graph-canvas"></canvas>
+                    </div>
+
+                    <div class="research-disclaimer">
+                        <strong>THIS METHOD OF DIAGNOSIS IS UNDER RESEARCH AND DEVELOPMENT BY PragnaAI</strong>
+                        <br><br>
+                        The voice analysis technology demonstrated here is currently in experimental stages and should not be used for medical diagnosis. Our research focuses on detecting subtle frequency changes in voice patterns that may correlate with early-stage neurological biomarkers.
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    
+    <div class="footer-text">
+        Email: pragna.ai.bio@gmail.com<br>
+        © 2025 PragnaAI - Transforming Early Disease Detection
+    </div>
+    <script src="scripts.js"></script>
+</body>
+</html>
