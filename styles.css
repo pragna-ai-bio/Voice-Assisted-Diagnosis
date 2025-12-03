@@ -66,6 +66,7 @@ body {
     padding: clamp(20px, 4vw, 30px);
     border-bottom: 1px solid var(--border-color);
     box-shadow: var(--shadow-xl);
+    position: relative;
 }
 
 .header-content {
@@ -102,16 +103,24 @@ body {
     font-weight: 400;
 }
 
+/* Connection Status - Removed Box */
 .connection-status {
     display: flex;
     align-items: center;
     gap: 8px;
     font-size: clamp(0.875rem, 2vw, 1rem);
-    padding: 10px 20px;
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 20px;
-    border: 1px solid var(--border-color);
-    backdrop-filter: blur(10px);
+    color: var(--text-secondary);
+    padding: 0;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    backdrop-filter: none;
+}
+
+.connection-text {
+    font-size: clamp(0.875rem, 2vw, 1rem);
+    color: var(--text-secondary);
+    transition: color var(--transition-normal);
 }
 
 .status-dot {
@@ -127,6 +136,12 @@ body {
     background: var(--success-green);
     box-shadow: 0 0 15px var(--success-green);
     animation: pulse 2s infinite;
+}
+
+.status-dot.not-connected {
+    background: var(--danger-red);
+    box-shadow: 0 0 10px var(--danger-red);
+    animation: none;
 }
 
 @keyframes pulse {
@@ -489,6 +504,7 @@ body {
     }
     
     .connection-status {
+        margin-top: 8px;
         align-self: center;
     }
     
