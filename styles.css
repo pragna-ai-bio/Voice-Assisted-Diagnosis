@@ -84,22 +84,19 @@ body {
     flex: 1;
 }
 
-.header-title h1 {
+.logo-text {
     font-size: clamp(1.5rem, 5vw, 2.5rem);
     font-weight: 700;
-    background: linear-gradient(135deg, var(--primary-blue), var(--accent-cyan));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--primary-blue);
     line-height: 1.2;
     text-shadow: var(--glow-blue);
     letter-spacing: -0.5px;
+    margin-bottom: 4px;
 }
 
 .subtitle {
-    color: var(--text-muted);
+    color: var(--text-secondary);
     font-size: clamp(0.875rem, 2.5vw, 1.125rem);
-    margin-top: 8px;
     font-weight: 400;
 }
 
@@ -107,7 +104,7 @@ body {
 .connection-status {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     font-size: clamp(0.875rem, 2vw, 1rem);
     color: var(--text-secondary);
     padding: 0;
@@ -121,6 +118,11 @@ body {
     font-size: clamp(0.875rem, 2vw, 1rem);
     color: var(--text-secondary);
     transition: color var(--transition-normal);
+}
+
+#connection-status {
+    color: var(--text-secondary);
+    font-weight: 500;
 }
 
 .status-dot {
@@ -162,9 +164,6 @@ body {
     max-width: 1400px;
     margin: 0 auto;
     padding: clamp(20px, 4vw, 30px);
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: clamp(20px, 4vw, 30px);
 }
 
 /* Main Grid Layout */
@@ -205,6 +204,16 @@ body {
     gap: 10px;
     flex: 1;
     min-width: min-content;
+}
+
+.result-badge {
+    padding: 8px 16px;
+    background: var(--bg-card-light);
+    border-radius: 8px;
+    font-size: clamp(0.9rem, 2vw, 1rem);
+    font-weight: 500;
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
 }
 
 /* Timer */
@@ -249,6 +258,11 @@ body {
 .btn-secondary {
     background: linear-gradient(135deg, var(--bg-card-light), var(--bg-card));
     color: var(--text-primary);
+}
+
+.btn-tertiary {
+    background: linear-gradient(135deg, var(--accent-cyan), #0891b2);
+    color: white;
 }
 
 .btn-danger {
@@ -327,32 +341,6 @@ body {
     font-size: clamp(0.95rem, 2vw, 1.1rem);
 }
 
-/* Features Grid - Full Width */
-.features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
-    gap: clamp(16px, 3vw, 24px);
-    width: 100%;
-}
-
-.feature-card {
-    background: linear-gradient(135deg, var(--bg-card-light), var(--bg-card));
-    border-radius: 16px;
-    padding: clamp(20px, 3vw, 24px);
-    display: flex;
-    align-items: center;
-    gap: clamp(12px, 3vw, 20px);
-    transition: all 0.3s ease;
-    border: 1px solid var(--border-color);
-    min-height: 110px;
-}
-
-.feature-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--glow-blue);
-    border-color: var(--primary-blue);
-}
-
 /* Graph Container */
 .graph-container {
     width: 100%;
@@ -420,6 +408,15 @@ body {
     border-color: var(--accent-cyan);
 }
 
+/* Model Status */
+.model-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: clamp(0.875rem, 2vw, 1rem);
+    color: var(--text-secondary);
+}
+
 /* Footer - Full Width */
 .main-footer {
     background: linear-gradient(135deg, var(--bg-secondary), var(--bg-primary));
@@ -443,10 +440,7 @@ body {
 .footer-logo {
     font-size: clamp(1.25rem, 4vw, 1.5rem);
     font-weight: 700;
-    background: linear-gradient(135deg, var(--primary-blue), var(--accent-cyan));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--primary-blue);
 }
 
 .footer-info {
@@ -488,10 +482,6 @@ body {
 @media (max-width: 1024px) {
     .content-grid {
         grid-template-columns: 1fr;
-    }
-    
-    .features-grid {
-        grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
     }
 }
 
@@ -539,7 +529,6 @@ body {
         gap: 10px;
     }
     
-    .feature-card,
     .info-card {
         padding: 16px;
     }
@@ -599,9 +588,5 @@ body {
     
     .content-grid {
         grid-template-columns: repeat(auto-fit, minmax(min(100%, 450px), 1fr));
-    }
-    
-    .features-grid {
-        grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
     }
 }
