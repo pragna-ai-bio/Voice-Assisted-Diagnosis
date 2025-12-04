@@ -133,7 +133,7 @@ class VoiceAnalysisApp {
     
     async checkBackendConnection() {
         try {
-            const response = await fetch('http://localhost:8000/health');
+            const response = await fetch('https://voice-assisted-diagnosis.onrender.com/health');
             if (response.ok) {
                 this.updateConnectionStatus('Connected', true);
                 this.updateModelStatus('Model Loaded', true);
@@ -312,7 +312,7 @@ class VoiceAnalysisApp {
             const formData = new FormData();
             formData.append('audio', audioBlob, 'recording.webm');
             
-            const response = await fetch('http://localhost:8000/analyze', {
+            const response = await fetch('https://voice-assisted-diagnosis.onrender.com/analyze', {
                 method: 'POST',
                 body: formData
             });
