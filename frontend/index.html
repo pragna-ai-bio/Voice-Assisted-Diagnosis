@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PragnaAI - Parkinson's Voice Analysis</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="main-header">
+            <div class="header-content">
+                <div class="header-title">
+                    <h1 class="logo-text">PragnaAI</h1>
+                    <div class="subtitle">
+                        Parkinson's Disease Voice Analysis
+                    </div>
+                </div>
+                <div class="connection-status">
+                    <span class="connection-text">Status:</span>
+                    <span class="status-dot" id="connection-dot"></span>
+                    <span id="connection-status">Not Connected</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-grid">
+                <!-- Recording Section -->
+                <section class="section-card recording-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-microphone"></i> Voice Recording</h2>
+                        <div class="timer" id="timer">00:00</div>
+                    </div>
+                    
+                    <div class="recording-controls">
+                        <button id="record-btn" class="btn btn-primary">
+                            <i class="fas fa-microphone"></i>
+                            Start Recording
+                        </button>
+                        <button id="stop-btn" class="btn btn-secondary" disabled>
+                            <i class="fas fa-stop"></i>
+                            Stop
+                        </button>
+                        <button id="play-btn" class="btn btn-tertiary" disabled>
+                            <i class="fas fa-play"></i>
+                            Playback
+                        </button>
+                    </div>
+
+                    <div class="audio-visualizer">
+                        <canvas id="waveform-canvas"></canvas>
+                    </div>
+
+                    <audio id="audio-player" style="display: none;"></audio>
+                </section>
+
+                <!-- Results Section -->
+                <section class="section-card results-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-chart-line"></i> Analysis Results</h2>
+                        <div class="result-badge" id="result-badge">No Data</div>
+                    </div>
+
+                    <div class="risk-indicator">
+                        <div class="risk-meter">
+                            <svg width="200" height="200" viewBox="0 0 200 200">
+                                <circle cx="100" cy="100" r="85" fill="none" stroke="#0a0a0a" stroke-width="15"/>
+                                <circle id="risk-progress" cx="100" cy="100" r="85" fill="none" 
+                                        stroke="#2563eb" stroke-width="15" stroke-dasharray="534" 
+                                        stroke-dashoffset="534" transform="rotate(-90 100 100)"/>
+                            </svg>
+                            <div class="risk-value" id="risk-value">0%</div>
+                        </div>
+                        <div class="risk-details">
+                            <h3 id="risk-level">No Analysis</h3>
+                            <p id="risk-description">Record voice to begin Parkinson's disease analysis</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Graph Section -->
+                <section class="section-card graph-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-wave-square"></i> Voice Analysis Graph</h2>
+                        <div class="graph-controls">
+                            <button class="graph-btn active" data-graph="waveform">
+                                <i class="fas fa-wave-square"></i> Waveform
+                            </button>
+                            <button class="graph-btn" data-graph="spectrum">
+                                <i class="fas fa-chart-bar"></i> Spectrum
+                            </button>
+                            <button class="graph-btn" data-graph="pitch">
+                                <i class="fas fa-chart-line"></i> Pitch
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="graph-container">
+                        <canvas id="analysis-graph"></canvas>
+                    </div>
+                </section>
+
+                <!-- Model Info Section -->
+                <section class="section-card model-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-cogs"></i> Model Information</h2>
+                        <div class="model-status">
+                            <span class="status-dot" id="model-status-dot"></span>
+                            <span id="model-status">Loading...</span>
+                        </div>
+                    </div>
+
+                    <div class="model-info">
+                        <div class="info-card">
+                            <i class="fas fa-database"></i>
+                            <div>
+                                <h4>Training Data</h4>
+                                <p>UCI Parkinson Speech Dataset</p>
+                            </div>
+                        </div>
+                        <div class="info-card">
+                            <i class="fas fa-brain"></i>
+                            <div>
+                                <h4>Algorithm</h4>
+                                <p>Random Forest Classifier</p>
+                            </div>
+                        </div>
+                        <div class="info-card">
+                            <i class="fas fa-bullseye"></i>
+                            <div>
+                                <h4>Accuracy</h4>
+                                <p>95% Detection Rate</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="main-footer">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span>PragnaAI</span>
+                </div>
+                <div class="footer-info">
+                    <p>Advanced voice analysis for Parkinson's disease research</p>
+                    <a href="mailto:pragna.ai.bio@gmail.com" class="email-link">
+                        <i class="fas fa-envelope"></i>
+                        pragna.ai.bio@gmail.com
+                    </a>
+                </div>
+                <div class="copyright">
+                    © 2025 PragnaAI. For research purposes only.
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
