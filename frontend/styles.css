@@ -273,6 +273,20 @@ body {
     background: linear-gradient(135deg, var(--success-green), #059669);
 }
 
+.btn.recording {
+    background: linear-gradient(135deg, var(--danger-red), #b91c1c);
+    animation: pulse-recording 1s infinite;
+}
+
+@keyframes pulse-recording {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(220, 38, 38, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 30px rgba(220, 38, 38, 0.6);
+    }
+}
+
 .recording-controls {
     display: flex;
     flex-wrap: wrap;
@@ -293,6 +307,15 @@ body {
     overflow: hidden;
     border: 1px solid var(--border-color);
     margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.audio-visualizer canvas {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
 }
 
 /* Risk Indicator - Full Width */
@@ -376,6 +399,11 @@ body {
     min-width: min(140px, 100%);
 }
 
+.graph-btn:hover:not(.active) {
+    border-color: var(--primary-blue);
+    box-shadow: var(--glow-blue);
+}
+
 .graph-btn.active {
     background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
     color: white;
@@ -404,8 +432,8 @@ body {
 
 .info-card:hover {
     transform: translateY(-4px);
-    box-shadow: var(--glow-cyan);
-    border-color: var(--accent-cyan);
+    box-shadow: var(--glow-blue);
+    border-color: var(--primary-blue);
 }
 
 /* Model Status */
@@ -415,6 +443,50 @@ body {
     gap: 8px;
     font-size: clamp(0.875rem, 2vw, 1rem);
     color: var(--text-secondary);
+}
+
+/* Features Section */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: clamp(12px, 3vw, 20px);
+    padding-top: clamp(12px, 2vw, 16px);
+}
+
+.feature-card {
+    background: linear-gradient(135deg, var(--bg-card-light), var(--bg-card));
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: clamp(16px, 2vw, 20px);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--primary-blue);
+    box-shadow: var(--glow-blue);
+}
+
+.feature-card h4 {
+    font-size: clamp(0.875rem, 2vw, 1rem);
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.feature-value {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    font-weight: 700;
+    color: var(--primary-blue-light);
+    margin: 8px 0;
+}
+
+.feature-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 /* Footer - Full Width */
@@ -466,6 +538,7 @@ body {
 .email-link:hover {
     color: var(--primary-blue);
     background: rgba(37, 99, 235, 0.1);
+    box-shadow: var(--glow-blue);
 }
 
 .copyright {

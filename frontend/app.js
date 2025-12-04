@@ -19,7 +19,7 @@ class VoiceAnalysisApp {
     initElements() {
         // UI Elements
         this.recordBtn = document.getElementById('record-btn');
-        this.stopBtn = document.getElementById('stop-btn');
+        this.recordBtnText = document.getElementById('record-btn-text');
         this.playBtn = document.getElementById('play-btn');
         this.timerDisplay = document.getElementById('timer');
         this.audioPlayer = document.getElementById('audio-player');
@@ -51,9 +51,14 @@ class VoiceAnalysisApp {
     }
     
     initEventListeners() {
-        // Recording Controls
-        this.recordBtn.addEventListener('click', () => this.startRecording());
-        this.stopBtn.addEventListener('click', () => this.stopRecording());
+        // Recording Controls - Toggle button
+        this.recordBtn.addEventListener('click', () => {
+            if (this.isRecording) {
+                this.stopRecording();
+            } else {
+                this.startRecording();
+            }
+        });
         this.playBtn.addEventListener('click', () => this.audioPlayer.play());
         
         // Graph Controls
@@ -204,8 +209,8 @@ class VoiceAnalysisApp {
             this.isRecording = true;
             
             // Update UI
-            this.recordBtn.disabled = true;
-            this.stopBtn.disabled = false;
+            this.recordBtnText.textContent = 'Stop Recording';
+            this.recordBtn.classList.add('recording');
             this.resultBadge.textContent = 'Recording';
             this.resultBadge.style.color = '#f59e0b';
             
@@ -228,8 +233,8 @@ class VoiceAnalysisApp {
             this.isRecording = false;
             
             // Update UI
-            this.recordBtn.disabled = false;
-            this.stopBtn.disabled = true;
+            this.recordBtnText.textContent = 'Start Recording';
+            this.recordBtn.classList.remove('recording');
             this.resultBadge.textContent = 'Processing...';
             
             // Stop timer
@@ -269,8 +274,11 @@ class VoiceAnalysisApp {
         if (!this.analyser || !this.waveformCanvas) return;
         
         const ctx = this.waveformCanvas.getContext('2d');
-        const width = this.waveformCanvas.width = this.waveformCanvas.offsetWidth;
-        const height = this.waveformCanvas.height = this.waveformCanvas.offsetHeight;
+        const container = this.waveformCanvas.parentElement;
+        const width = this.waveformCanvas.width = container.offsetWidth * (window.devicePixelRatio || 1);
+        const height = this.waveformCanvas.height = container.offsetHeight * (window.devicePixelRatio || 1);
+        ctx.scale(window.devicePixelRatio || 1, window.devicePixelRatio || 1);
+        
         const bufferLength = this.analyser.frequencyBinCount;
         const dataArray = new Uint8Array(bufferLength);
         
@@ -282,23 +290,23 @@ class VoiceAnalysisApp {
             
             // Clear canvas
             ctx.fillStyle = 'rgba(15, 23, 42, 0.5)';
-            ctx.fillRect(0, 0, width, height);
+            ctx.fillRect(0, 0, container.offsetWidth, container.offsetHeight);
             
             // Draw bars
-            const barWidth = (width / bufferLength) * 2.5;
+            const barWidth = (container.offsetWidth / bufferLength) * 2.5;
             let barHeight;
             let x = 0;
             
             for (let i = 0; i < bufferLength; i++) {
-                barHeight = (dataArray[i] / 255) * height;
+                barHeight = (dataArray[i] / 255) * container.offsetHeight;
                 
                 // Create gradient
-                const gradient = ctx.createLinearGradient(0, height - barHeight, 0, height);
+                const gradient = ctx.createLinearGradient(0, container.offsetHeight - barHeight, 0, container.offsetHeight);
                 gradient.addColorStop(0, '#2563eb');
                 gradient.addColorStop(1, '#7c3aed');
                 
                 ctx.fillStyle = gradient;
-                ctx.fillRect(x, height - barHeight, barWidth, barHeight);
+                ctx.fillRect(x, container.offsetHeight - barHeight, barWidth, barHeight);
                 
                 x += barWidth + 1;
             }
