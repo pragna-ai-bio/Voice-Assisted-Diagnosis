@@ -1,0 +1,13 @@
+soundfile
+python-dotenv
+pydantic
+aiofiles
+fastapi
+uvicorn
+numpy
+scikit-learn
+librosa
+praat-parselmouth
+python-multipart
+pandas
+ffmpeg-python
