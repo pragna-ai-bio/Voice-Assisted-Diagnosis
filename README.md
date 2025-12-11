@@ -28,3 +28,6 @@ React: Used for building a robust and maintainable component-based user interfac
 Tailwind CSS: Provides utility-first styling for rapid development of a responsive, dark-themed, and aesthetically pleasing design.
 
 Lucide React: Used for sharp, modern, and easily scalable icons.
+
+
+<img width="1024" height="904" alt="Gemini_Generated_Image_5ybbgd5ybbgd5ybb" src="https://github.com/user-attachments/assets/844f52f7-a511-4be9-823e-338b75ca2ca3" />
